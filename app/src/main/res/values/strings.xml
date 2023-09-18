@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Namaz_Time_App</string>
+    <string name="fajar">FAJAR</string>
+    <string name="fajarArabic">الفجر</string>
+    <string name="zohar">ZOHAR</string>
+    <string name="zoharArabic">الظهر</string>
+    <string name="asar">ASAR</string>
+    <string name="asarArabic">العصر</string>
+    <string name="maghrib">MAGHRIB</string>
+    <string name="maghribArabic">المغرب</string>
+    <string name="isha">ISHA</string>
+    <string name="ishaArabic">العشاء</string>
+    <string name="remaining_time_in">Remaining Time in:</string>
+</resources>
