@@ -10,5 +10,6 @@
     <string name="maghribArabic">المغرب</string>
     <string name="isha">ISHA</string>
     <string name="ishaArabic">العشاء</string>
+    <string name="jumaArabic">جمعة مباركة</string>
     <string name="remaining_time_in">Remaining Time in:</string>
 </resources>
