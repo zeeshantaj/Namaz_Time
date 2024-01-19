@@ -1,10 +1,16 @@
 package com.example.namaz_time_app;
 
+import androidx.activity.ComponentActivity;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -19,7 +25,6 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.namaz_time_app.Model.PrayerTimeManager;
-import com.example.namaz_time_app.Service.PrayerReminderService;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -48,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     private PrayerTimeManager prayerTimeManager;
     private Button startBtn;
 
+    private static final int NOTIFICATION_PERMISSION_CODE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,8 +103,34 @@ public class MainActivity extends AppCompatActivity {
         ishaLay();
         compareTime();
 
+
+        if (Build.VERSION.SDK_INT >= 33){
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.POST_NOTIFICATIONS},NOTIFICATION_PERMISSION_CODE);
+        }else if (Build.VERSION.SDK_INT <= 30){
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, NOTIFICATION_PERMISSION_CODE);
+            } else {
+                // Permission already granted, proceed with loading the image
+
+                Toast.makeText(this, "Permission already exist", Toast.LENGTH_SHORT).show();
+            }
+        }
+
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == NOTIFICATION_PERMISSION_CODE){
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Toast.makeText(this, "Permission is required to send notification ", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+    }
 
     private void fajarLay() {
 

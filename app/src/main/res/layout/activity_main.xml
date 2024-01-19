@@ -7,6 +7,7 @@
     tools:context=".MainActivity"
     android:background="@color/white">
 
+
     <TextView
         android:id="@+id/currentTIme"
         android:layout_width="match_parent"
@@ -19,9 +20,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-
-
     <LinearLayout
         android:id="@+id/fajarLayout"
         android:layout_width="match_parent"
